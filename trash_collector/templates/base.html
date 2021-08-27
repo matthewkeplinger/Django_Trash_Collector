@@ -12,6 +12,7 @@
     <li><a href = "{% url 'customers:account_details' %}"> Account Details </a> </li>
     <li><a href = "{% url 'customers:change_pickup_day' %}">Change Pickup Day</a></li>
     <li><a href = "{% url 'customers:suspend' %}">Suspend Service</a></li>
+    <li><a href = "{% url 'customers:pickup' %}">Pickup</a></li>
     {% elif group.name == "Employees" %}
     <p>Employee Navbar</p>
     {% endif %}
