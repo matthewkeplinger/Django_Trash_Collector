@@ -35,3 +35,11 @@ def create(request):
         return HttpResponseRedirect(reverse('customers:index'))
     else:
         return render(request, 'customers/register.html')
+
+def account_details(request):
+    if not request.user.groups.filter(name="Customers").exists():
+        return render(request, 'home.html')
+    user = request.user
+    customer = Customer.objects.get(user=user)
+    context = {'customer':customer}
+    return render(request, 'customers/account_details.html', context)

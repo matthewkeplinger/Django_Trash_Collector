@@ -9,6 +9,7 @@
   {% for group in user.groups.all%}
     {% if group.name == "Customers" %}
     <p>Customer Navbar</p>
+    <li><a href = "{% url 'customers:account_details' %}"> Account Details </a> </li>
     {% elif group.name == "Employees" %}
     <p>Employee Navbar</p>
     {% endif %}
