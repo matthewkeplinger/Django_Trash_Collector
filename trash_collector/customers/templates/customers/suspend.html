@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %} Suspend Pickup {% endblock %}
+
+{% block header %} Suspend Pickup {% endblock %}
+
+{% block content %}
+
+    Your pickup service is 
+    
+    {% if customer.suspend_status %}
+        suspended.
+    {% else %}
+        not suspended.
+    {% endif %}
+
+    <form action="{% url 'customers:suspend' %}" method='POST'>
+        {% csrf_token %}
+
+        Suspend Start: <input type="date" name="suspend_start" id="suspend_start">
+        Suspend Stop: <input type="date" name="suspend_stop" id="suspend_stop">
+        <input type="submit" value="Submit">
+
+    </form>
+
+{% endblock %}

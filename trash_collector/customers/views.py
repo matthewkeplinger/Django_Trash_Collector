@@ -55,3 +55,16 @@ def change_pickup_day(request):
     else:
         context = {'customer':customer}
         return render(request, 'customers/change_pickup_day.html', context)
+
+def suspend_service(request):
+    user = request.user
+    customer = Customer.objects.get(user=user)
+    if request.method == 'POST':
+        customer.suspend_start = request.POST.get('suspend_start')
+        customer.suspend_end = request.POST.get('suspend_stop')
+        customer.suspend_status = True
+        customer.save()
+        return HttpResponseRedirect(reverse('customers:index'))
+    else:
+        context = {'customer':customer}
+        return render(request, 'customers/suspend.html', context)
