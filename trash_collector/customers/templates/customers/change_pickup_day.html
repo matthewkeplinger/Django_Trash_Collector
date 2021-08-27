@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %} Change Pickup Day {% endblock %}
+
+{% block header %} Change Pickup Day {% endblock %}
+
+{% block content %}
+
+    <form action="{% url 'customers:change_pickup_day' %}" method="POST">
+
+        {%csrf_token%}
+
+        Your current pickup date is: {{customer.weekly_pickup_day}}<br>
+        Please enter your new pickup day: <input type="text" name="change_pickup_day" id="change_pickup_day">
+        <input type="submit" value="Set Day">
+
+    </form>
+
+{% endblock %}

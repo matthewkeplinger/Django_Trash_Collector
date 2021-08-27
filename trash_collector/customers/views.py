@@ -43,3 +43,15 @@ def account_details(request):
     customer = Customer.objects.get(user=user)
     context = {'customer':customer}
     return render(request, 'customers/account_details.html', context)
+
+def change_pickup_day(request):
+    user = request.user
+    customer = Customer.objects.get(user=user)
+    if request.method == 'POST':
+        change_weekly_pickup_day = request.POST.get('change_pickup_day')
+        customer.weekly_pickup_day = change_weekly_pickup_day
+        customer.save()
+        return HttpResponseRedirect(reverse('customers:index'))
+    else:
+        context = {'customer':customer}
+        return render(request, 'customers/change_pickup_day.html', context)
