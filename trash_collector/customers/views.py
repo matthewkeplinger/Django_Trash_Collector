@@ -17,7 +17,8 @@ def index(request):
             'logged_in_customer': logged_in_customer
         }
     except:
-        return HttpResponseRedirect(reverse('customers:create'))
+        return HttpResponseRedirect(reverse('customers:register'))
+
     return render(request, 'customers/index.html', context)
 
 
@@ -33,4 +34,4 @@ def create(request):
         new_customer.save()
         return HttpResponseRedirect(reverse('customers:index'))
     else:
-        return render(request, 'customers/create.html')
+        return render(request, 'customers/register.html')

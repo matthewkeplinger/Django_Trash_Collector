@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %} Account Details {% endblock %}
+
+{% block header %} Account Details {% endblock %}
+
+{% block content %}
+
+    <form action="{% url 'customers:register' %}" method = "POST">
+        {% csrf_token %}
+        <h2>Please fill out the following fields to create your account: </h2><br>
+        <table>
+            <tr><td> Name:</td><td> <input type = "text" name = "name" id="name"></td></tr><br>
+            <tr><td> Address:</td><td> <input type = "text" name = "address" id="address"></td></tr><br>
+            <tr><td> Zip Code:</td><td> <input type = "text" name = "zip_code" id="zip_code"></td></tr><br>
+            <tr><td> Weekly Pickup Day:</td><td> <input type = "text" name = "weekly_pickup_day" id="weekly_pickup_day"></td></tr><br>
+        </table>
+        <input type = "submit" value="Create Account">
+    </form>
+
+{% endblock %}
