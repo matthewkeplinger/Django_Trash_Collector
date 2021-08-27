@@ -1,1 +1,0 @@
-# trash_collector
