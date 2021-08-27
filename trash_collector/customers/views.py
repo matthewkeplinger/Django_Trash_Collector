@@ -21,3 +21,7 @@ def index(request):
 
     print(user)
     return render(request, 'customers/index.html')
+
+
+def create(request):
+    pass
