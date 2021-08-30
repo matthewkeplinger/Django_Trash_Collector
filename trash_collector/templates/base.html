@@ -15,6 +15,7 @@
     <li><a href = "{% url 'customers:pickup' %}">Pickup</a></li>
     {% elif group.name == "Employees" %}
     <p>Employee Navbar</p>
+    <li><a href = "{% url 'employees:index' %}">Daily View</a></li>
     {% endif %}
   {% endfor %}
   <p><a href="{% url 'logout' %}">Log Out</a></p>

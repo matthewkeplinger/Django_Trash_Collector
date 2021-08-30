@@ -3,7 +3,7 @@ from django.http.response import HttpResponseRedirect
 from django.shortcuts import render
 from django.apps import apps
 from django.urls import reverse
-from models import Employee
+from .models import Employee
 
 # Create your views here.
 
@@ -13,7 +13,20 @@ from models import Employee
 def index(request):
     # This line will get the Customer model from the other app, it can now be used to query the db for Customers
     Customer = apps.get_model('customers.Customer')
-    return render(request, 'employees/index.html')
+    all_customers = Customer.objects.all()
+    user = request.user
+    try:
+        logged_in_employee = Employee.objects.get(user = user)
+
+    except:
+        return HttpResponseRedirect(reverse('employees:create'))
+
+    context = {'logged_in_employee':logged_in_employee,
+            'all_customers':all_customers
+        }
+    return render(request, 'employees/index.html', context)
+
+
 
 def create(request):
     if request.method == 'POST':
@@ -24,4 +37,4 @@ def create(request):
         new_employee.save()
         return HttpResponseRedirect(reverse('employees:index'))
     else:
-        return render(request, 'employee/create.html')
+        return render(request, 'employees/create.html')
