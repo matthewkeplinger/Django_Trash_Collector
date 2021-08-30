@@ -22,17 +22,17 @@
 
     <form action = "{% url 'employees:daily_view' %}" name="add_charge" id="add_charge" method='POST'>
       {% csrf_token %}
-      <tr><td><input type="checkbox" id="apply_charge" name="apply_charge"></td>
+      <tr>
           <td>{{customer.name}}</td>
           <td>{{customer.address}} </td>
           <td>{{customer.zip_code}}</td>
           <td>{{customer.pickup_status}}</td>
           <td>{{customer.balance}}</td>
+          <td><a href = "{% url 'employees:confirm' customer.id %}">Confirm Pickup</td>
         </tr><br>   
     {% endif %} 
     {% endfor %}
     </table>
-      <input type='submit' value="Submit">
     </form
   {% endif %}  
 {% endblock %}
