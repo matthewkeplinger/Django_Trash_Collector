@@ -14,7 +14,8 @@
       </tr>
 
 
-    {% for customer in all_customers %}
+
+    {% for customer in my_customers %}
     {% if weekday == customer.weekly_pickup_day%}
       <tr><td>{{customer.name}}</td>
           <td>{{customer.address}} </td>

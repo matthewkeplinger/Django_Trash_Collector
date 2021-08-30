@@ -48,8 +48,7 @@ def daily_view(request):
     current_date = date.today()
     weekday = current_date.strftime('%A')
     my_customers = []
-    if request.method == "POST":
-        for customer in all_customers:
+    for customer in all_customers:
             if customer.zip_code == logged_in_employee.zip_code and (customer.weekly_pickup_day == weekday or customer.one_time_pickup == weekday):
                 my_customers.append(customer)
     context = { 'my_customers' : my_customers,
