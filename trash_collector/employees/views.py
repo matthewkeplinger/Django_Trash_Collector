@@ -92,6 +92,8 @@ def confirm(request, user_id):
     charge_customer = Customers.objects.get(pk = user_id)
     context = { 'charge_customer': charge_customer}
     if request.method == 'POST':
+        if charge_customer.balance == None:
+            charge_customer.balance = 0
         charge_customer.balance += 5
         charge_customer.save()
         return HttpResponseRedirect(reverse('employees:daily_view'))
