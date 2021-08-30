@@ -11,19 +11,26 @@
         <th>Name:</th>
         <th>Address:</th>
         <th>Zip Code: </th>
+        <th>Pickup Status</th>
       </tr>
 
 
 
     {% for customer in my_customers %}
     {% if weekday == customer.weekly_pickup_day%}
-      <tr><td>{{customer.name}}</td>
+
+    <form action = "{% url 'employees:daily_view' %}" name="add_charge" id="add_charge" method='POST'>
+      {% csrf_token %}
+      <tr><td><input type="checkbox" id="apply_charge" name="apply_charge"></td>
+          <td>{{customer.name}}</td>
           <td>{{customer.address}} </td>
           <td>{{customer.zip_code}}</td>
+          <td>{{customer.pickup_status}}</td>
         </tr><br>   
     {% endif %} 
     {% endfor %}
-
     </table>
+      <input type='submit' value="Submit">
+    </form
   {% endif %}  
 {% endblock %}
