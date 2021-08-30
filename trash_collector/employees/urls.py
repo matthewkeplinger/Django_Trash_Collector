@@ -9,5 +9,6 @@ urlpatterns = [
     path('', views.index, name="index"),
     path('create/', views.create, name="create"),
     path('daily_view/', views.daily_view, name='daily_view'),
-    path('day_filter/', views.choose_day, name='day_filter')
+    path('day_filter/', views.choose_day, name='day_filter'),
+    path('confirm/<int:user_id>', views.confirm, name = 'confirm')
 ]

@@ -87,3 +87,13 @@ def choose_day(request):
                 'weekday': weekday}
     return render(request, 'employees/day_filter.html', context)
 
+def confirm(request, user_id):
+    Customers = apps.get_model('customers.Customer')
+    charge_customer = Customers.objects.get(pk = user_id)
+    context = { 'charge_customer': charge_customer}
+    if request.method == 'POST':
+        charge_customer.balance += 5
+        charge_customer.save()
+        return HttpResponseRedirect(reverse('employees:daily_view'))
+    else:
+        return render(request, 'employees/confirm.html', context)

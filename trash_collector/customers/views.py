@@ -69,13 +69,5 @@ def suspend_service(request):
         context = {'customer':customer}
         return render(request, 'customers/suspend.html', context)
 
-def pickup(request):
-    user = request.user
-    customer = Customer.objects.get(user=user)
-    if request.method == 'POST':
-        customer.one_time_pickup = request.POST.get('one_time_pickup')
-        customer.save()
-        return HttpResponseRedirect(reverse('customers:index'))
-    else:
-        context = {'customer':customer}
-        return render(request, 'customers/pickup.html', context)
+
+    
