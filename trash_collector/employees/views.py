@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.apps import apps
 from django.urls import reverse
 from .models import Employee
+from datetime import date
 
 # Create your views here.
 
@@ -38,3 +39,19 @@ def create(request):
         return HttpResponseRedirect(reverse('employees:index'))
     else:
         return render(request, 'employees/create.html')
+
+def daily_view(request):
+    user = request.user
+    logged_in_employee = Employee.objects.get(user=user)
+    Customers = apps.get_model('customers.Customer')
+    all_customers = Customers.objects.all()
+    current_date = date.today()
+    weekday = current_date.strftime('%A')
+    my_customers = []
+    if request.method == "POST":
+        for customer in all_customers:
+            if customer.zip_code == logged_in_employee.zip_code and (customer.weekly_pickup_day == weekday or customer.one_time_pickup == weekday):
+                my_customers.append(customer)
+    context = { 'my_customers' : my_customers,
+                'weekday': weekday}
+    return render(request, 'employees/daily_view.html', context)

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}{% block header %} Employee Daily View {% endblock %}{% endblock %}
+
+{% block content %}
+  {% if user.is_authenticated %}
+    Hello Employee {{ user.username }}!<br><br>
+    <h3> Here are the customers in your route today: </h3>
+    <table>
+      <tr>
+        <th>Name:</th>
+        <th>Address:</th>
+        <th>Zip Code: </th>
+      </tr>
+
+
+    {% for customer in all_customers %}
+    {% if weekday == customer.weekly_pickup_day%}
+      <tr><td>{{customer.name}}</td>
+          <td>{{customer.address}} </td>
+          <td>{{customer.zip_code}}</td>
+        </tr><br>   
+    {% endif %} 
+    {% endfor %}
+
+    </table>
+  {% endif %}  
+{% endblock %}

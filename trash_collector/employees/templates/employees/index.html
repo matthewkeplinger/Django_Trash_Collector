@@ -5,20 +5,15 @@
 {% block content %}
   {% if user.is_authenticated %}
     Hello Employee {{ user.username }}!<br><br>
-
-    
+   
     <table>
       <tr> <th>Name</th> <th>Weekly Pickup Day</th> <th>Address</th> <th>One Time Pickup</th> <th>Suspend Start</th>  <th>Suspend End</th> <th>Balance</th> </tr>
 
       {% for customer in all_customers %}
-      
       <tr><td>{{customer.name}}</td> <td>{{customer.weekly_pickup_day}}</td> <td>{{customer.address}}</td> <td>{{customer.one_time_pickup}}</td>
       <td>{{customer.suspend_start}}</td> <td>{{customer.suspend_end}}</td> <td>{{customer.balance}}</td> </tr> <br><br>
-
       {% endfor %}
     </table>
-          
-
   {% else %}
     <p>You are at the employee index, but you are not logged in.</p>
     <a href="{% url 'login' %}">Log In</a>
