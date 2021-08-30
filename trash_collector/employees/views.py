@@ -95,6 +95,7 @@ def confirm(request, user_id):
         if charge_customer.balance == None:
             charge_customer.balance = 0
         charge_customer.balance += 5
+        charge_customer.pickup_status = True
         charge_customer.save()
         return HttpResponseRedirect(reverse('employees:daily_view'))
     else:
