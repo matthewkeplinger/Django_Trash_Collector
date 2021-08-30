@@ -54,7 +54,6 @@ def daily_view(request):
             customer_suspend_start = str(customer.suspend_start)
             customer_suspend_end = str(customer.suspend_end)
             if  current_day < customer_suspend_start or current_day > customer_suspend_end:
-        
                 if customer.zip_code == logged_in_employee.zip_code and (customer.weekly_pickup_day == weekday or customer.one_time_pickup == weekday) :
                     my_customers.append(customer)
 
@@ -78,8 +77,7 @@ def choose_day(request):
     for customer in all_customers: 
         customer_suspend_start = str(customer.suspend_start)
         customer_suspend_end = str(customer.suspend_end)
-        if  current_day < customer_suspend_start or current_day > customer_suspend_end:
-      
+        if  current_day < customer_suspend_start or current_day > customer_suspend_end:     
             if customer.zip_code == logged_in_employee.zip_code and (customer.weekly_pickup_day == weekday or customer.one_time_pickup == weekday) :
                 my_customers.append(customer)
 
