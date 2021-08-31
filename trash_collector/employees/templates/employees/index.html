@@ -24,8 +24,13 @@
                   </thead>
                   <tbody>
                     {% for customer in all_customers %}
-                    <tr><td>{{customer.name}}</td> <td>{{customer.weekly_pickup_day}}</td> <td>{{customer.address}}</td> <td>{{customer.one_time_pickup}}</td>
-                    <td>{{customer.suspend_start}}</td> <td>{{customer.suspend_end}}</td> <td>{{customer.balance}}</td> </tr> <br><br>
+                    <tr><td>{{customer.name}}</td> 
+                    <td>{{customer.weekly_pickup_day}}</td> 
+                    <td>{{customer.address}}</td> 
+                    <td>{{customer.one_time_pickup}}</td>
+                    <td>{{customer.suspend_start}}</td> 
+                    <td>{{customer.suspend_end}}</td> 
+                    <td>{{customer.balance}}</td> </tr> <br><br>
                     {% endfor %}
                   </tbody>
                 </table>
