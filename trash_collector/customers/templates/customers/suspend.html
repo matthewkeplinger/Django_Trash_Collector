@@ -2,23 +2,23 @@
 
 {% block title %} Suspend Pickup {% endblock %}
 
-{% block header %} Suspend Pickup {% endblock %}
+{% block header %} Suspend Pickup Services {% endblock %}
 
 {% block content %}
 
     Your pickup service is 
     
     {% if customer.suspend_status %}
-        suspended.
+       <b> suspended. </b>
     {% else %}
-        not suspended.
+       <b> not suspended. </b>
     {% endif %}
 
     <form action="{% url 'customers:suspend' %}" method='POST'>
         {% csrf_token %}
-
-        Suspend Start: <input type="date" name="suspend_start" id="suspend_start">
-        Suspend Stop: <input type="date" name="suspend_stop" id="suspend_stop">
+        <br>
+        Suspend Start: <input type="date" name="suspend_start" id="suspend_start"><br><br>
+        Suspend Stop: <input type="date" name="suspend_stop" id="suspend_stop"><br>
         <input type="submit" value="Submit">
 
     </form>

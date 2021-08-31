@@ -11,10 +11,29 @@
     <form action="{% url 'customers:pickup' %}" method='POST'>
         {% csrf_token %}
 
-        Select One-time pickup date: <input type="date" name="one_time_pickup" id="one_time_pickup">
+        Select One-time pickup date: <br>
+        <input type="date" name="one_time_pickup" id="one_time_pickup">
 
         <input type="submit" value="Submit">
-
     </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 {% endblock %}

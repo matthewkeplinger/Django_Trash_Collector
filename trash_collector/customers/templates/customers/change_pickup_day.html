@@ -9,10 +9,44 @@
     <form action="{% url 'customers:change_pickup_day' %}" method="POST">
 
         {%csrf_token%}
+        
+        Your current pickup date is:<b> {{customer.weekly_pickup_day}} </b><br><br>
+            <form action = "{% url 'customers:change_pickup_day'%}" name = 'change_pickup_day' id= 'change_pickup_day' method = 'POST'>
+        <select name = "change_pickup_day" id = "change_pickup_day">
+            <option value = "Monday" selected = "Monday">Monday</option>
+            <option value = "Tuesday" selected = "Tuesday">Tuesday</option>
+            <option value = "Wednesday" selected = "Wednesday">Wednesday</option>
+            <option value = "Thursday" selected = "Thursday">Thursday</option>
+            <option value = "Friday" selected = "Friday">Friday</option>
+        </select>
+        <input type = "submit" value = "Submit"> 
+</form>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <br><br>
+        
 
-        Your current pickup date is: {{customer.weekly_pickup_day}}<br>
-        Please enter your new pickup day: <input type="text" name="change_pickup_day" id="change_pickup_day">
-        <input type="submit" value="Set Day">
 
     </form>
 
