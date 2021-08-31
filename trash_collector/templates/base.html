@@ -73,7 +73,7 @@
             </div>
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
-                  Hello, John Doe
+                  Hello, {{user.username}}
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                   <li><a class="dropdown-item" href="{% url 'logout' %}">Log Out</a></li>
@@ -84,8 +84,6 @@
       <div class="container-fluid">
         <div class="row">
             <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-                <!-- sidebar content goes in here -->
-
               <div class="position-sticky pt-md-5">
                 <ul class="nav flex-column">
                     <li class="nav-item">
@@ -114,22 +112,11 @@
                     </li>
                   </ul>
               </div>
-
-
-
-
-
-
             </nav>
-
         </div>
       </div>
 
-
     {% elif group.name == "Employees" %}
-
-
-
       <nav class="navbar navbar-light bg-light p-3">
         <div class="d-flex col-12 col-md-3 col-lg-2 mb-2 mb-lg-0 flex-wrap flex-md-nowrap justify-content-between">
             <a class="navbar-brand" href="#">
@@ -159,9 +146,6 @@
       <div class="container-fluid">
         <div class="row">
             <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-                <!-- sidebar content goes in here -->
-
-
               <div class="position-sticky pt-md-5">
                 <ul class="nav flex-column">
                     <li class="nav-item">
@@ -184,15 +168,9 @@
                     </li>
                   </ul>
               </div>
-
-
             </nav>
-
         </div>
       </div>
-
-
-
     {% endif %}
   {% endfor %}
 {% endif %}
@@ -201,10 +179,8 @@
     {% block content %}
     {% endblock %}
   </main>
-    
+   
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
 </body>
 </html>
-{# This is the parent template that should be extended by any other view you create #}
-{# Todo: Add navbar links, link to stylesheets, style layout #}

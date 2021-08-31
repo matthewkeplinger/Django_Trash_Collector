@@ -1,15 +1,16 @@
 {% extends 'base.html' %}
 
 
-{% block title %} Daily Filter {% endblock %}
+{% block title %} Route Planner by Day {% endblock %}
 
-{% block header %} Daily Filter {% endblock %}
+{% block header %} Route Planner by Day {% endblock %}
 
 {% block content %}
 
 <form action="{% url 'employees:day_filter' %}" method='POST'>
     {% csrf_token %}
-    <h3> Select a day from the following to filter for customers: </h3>
+    <br><br><br>
+    <h3> Select a day from the following to see customers on that route for the selected day: </h3>
     <form action = "{% url 'employees:day_filter'%}" name = 'day_filter' id= 'day_filter' method = 'POST'>
         <select name = "day_of_the_week" id = "day_of_the_week">
             <option value = "Monday" selected = "Monday">Monday</option>
@@ -21,24 +22,28 @@
         <input type = "submit" value = "Submit"> 
 </form>
   {% if user.is_authenticated %}
-    Hello Employee {{ user.username }}!<br><br>
-    <h3> Here are the customers in your route today: </h3>
-    <table>
-      <tr>
-        <th>Name:</th>
-        <th>Address:</th>
-        <th>Zip Code: </th>
-      </tr>
-
-    {% for customer in my_customers %}
-    {% if weekday == customer.weekly_pickup_day%}
-      <tr><td>{{customer.name}}</td>
-          <td>{{customer.address}} </td>
-          <td>{{customer.zip_code}}</td>
-        </tr><br>   
-    {% endif %} 
-    {% endfor %}
-
-    </table>
+             <div class="row">
+              <table class="table" style = "width:80%">
+                  <thead>
+                    <tr>
+                      <th scope="col">Name</th>
+                      <th scope="col">Address</th>
+                      <th scope="col">Zip Code</th>
+                      <th scope="col"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                      {% for customer in my_customers %}
+                      {% if weekday == customer.weekly_pickup_day%}           
+                        <tr>
+                            <td>{{customer.name}}</td>
+                            <td>{{customer.address}} </td>
+                            <td>{{customer.zip_code}}</td>
+                          </tr><br>   
+                      {% endif %} 
+                      {% endfor %}
+                  </tbody>
+                </table>
+            </div>
 {% endif %}
 {% endblock %}
