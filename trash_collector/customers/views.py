@@ -51,7 +51,7 @@ def change_pickup_day(request):
         change_weekly_pickup_day = request.POST.get('change_pickup_day')
         customer.weekly_pickup_day = change_weekly_pickup_day
         customer.save()
-        return HttpResponseRedirect(reverse('customers:index'))
+        return HttpResponseRedirect(reverse('customers:account_details'))
     else:
         context = {'customer':customer}
         return render(request, 'customers/change_pickup_day.html', context)
@@ -64,7 +64,7 @@ def suspend_service(request):
         customer.suspend_end = request.POST.get('suspend_stop')
         customer.suspend_status = True
         customer.save()
-        return HttpResponseRedirect(reverse('customers:index'))
+        return HttpResponseRedirect(reverse('customers:account_details'))
     else:
         context = {'customer':customer}
         return render(request, 'customers/suspend.html', context)
@@ -77,7 +77,7 @@ def pickup(request):
         form_date = request.POST.get('one_time_pickup')
         customer.one_time_pickup = form_date
         customer.save()
-        return HttpResponseRedirect(reverse('customers:index'))
+        return HttpResponseRedirect(reverse('customers:account_details'))
     else:
         context = {'customer':customer}
     return render(request, 'customers/pickup.html', context)
