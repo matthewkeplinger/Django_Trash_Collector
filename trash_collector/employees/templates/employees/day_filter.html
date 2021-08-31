@@ -9,7 +9,7 @@
 
 <form action="{% url 'employees:day_filter' %}" method='POST'>
     {% csrf_token %}
-    <br><br><br>
+    <br><br>
     <h3> Select a day from the following to see customers on that route for the selected day: </h3>
     <form action = "{% url 'employees:day_filter'%}" name = 'day_filter' id= 'day_filter' method = 'POST'>
         <select name = "day_of_the_week" id = "day_of_the_week">
