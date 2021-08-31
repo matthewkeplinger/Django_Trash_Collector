@@ -4,35 +4,41 @@
 
 {% block content %}
   {% if user.is_authenticated %}
-    Hello Employee {{ user.username }}!<br><br>
     <h3> Here are the customers in your route today: </h3>
-    <table>
-      <tr>
-        <th>Name:</th>
-        <th>Address:</th>
-        <th>Zip Code: </th>
-        <th>Pickup Status</th>
-        <th>Balance: </th>
-      </tr>
+ 
+ 
+             <div class="row">
+              <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Name</th>
+                      <th scope="col">Address</th>
+                      <th scope="col">Zip Code</th>
+                      <th scope="col">Pickup Status</th>
+                      <th scope="col">Balance</th>
+                      <th scope="col"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                      {% for customer in my_customers %}
+                      {% if weekday == customer.weekly_pickup_day%}
 
+                      <form action = "{% url 'employees:daily_view' %}" name="add_charge" id="add_charge" method='POST'>
+                        {% csrf_token %}
+                        <tr>
+                            <td>{{customer.name}}</td>
+                            <td>{{customer.address}} </td>
+                            <td>{{customer.zip_code}}</td>
+                            <td>{{customer.pickup_status}}</td>
+                            <td>{{customer.balance}}</td>
+                            <td><a href = "{% url 'employees:confirm' customer.id %}">Confirm Pickup</td>
+                          </tr><br>   
+                      {% endif %} 
+                      {% endfor %}
+                      </form>
+                  </tbody>
+                </table>
+            </div>
 
-
-    {% for customer in my_customers %}
-    {% if weekday == customer.weekly_pickup_day%}
-
-    <form action = "{% url 'employees:daily_view' %}" name="add_charge" id="add_charge" method='POST'>
-      {% csrf_token %}
-      <tr>
-          <td>{{customer.name}}</td>
-          <td>{{customer.address}} </td>
-          <td>{{customer.zip_code}}</td>
-          <td>{{customer.pickup_status}}</td>
-          <td>{{customer.balance}}</td>
-          <td><a href = "{% url 'employees:confirm' customer.id %}">Confirm Pickup</td>
-        </tr><br>   
-    {% endif %} 
-    {% endfor %}
-    </table>
-    </form
   {% endif %}  
 {% endblock %}
