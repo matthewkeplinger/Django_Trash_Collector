@@ -25,9 +25,25 @@ def index(request):
     context = {'logged_in_employee':logged_in_employee,
             'all_customers':all_customers
         }
+    user = request.user
+    logged_in_employee = Employee.objects.get(user=user)
+    Customers = apps.get_model('customers.Customer')
+    all_customers = Customers.objects.all()
+    current_date = date.today()
+    current_day = str(date.today())
+    weekday = current_date.strftime('%A')
+    my_customers = []  
+
+    for customer in all_customers: 
+        customer_suspend_start = str(customer.suspend_start)
+        customer_suspend_end = str(customer.suspend_end)
+        if  current_day < customer_suspend_start or current_day > customer_suspend_end:
+            if customer.zip_code == logged_in_employee.zip_code and (customer.weekly_pickup_day == weekday or customer.one_time_pickup == weekday) :
+                my_customers.append(customer)
+
+    context = { 'my_customers' : my_customers,
+                'weekday': weekday}
     return render(request, 'employees/index.html', context)
-
-
 
 def create(request):
     if request.method == 'POST':
@@ -39,30 +55,6 @@ def create(request):
         return HttpResponseRedirect(reverse('employees:index'))
     else:
         return render(request, 'employees/create.html')
-
-def daily_view(request):  
-        user = request.user
-        logged_in_employee = Employee.objects.get(user=user)
-        Customers = apps.get_model('customers.Customer')
-        all_customers = Customers.objects.all()
-        current_date = date.today()
-        current_day = str(date.today())
-        weekday = current_date.strftime('%A')
-        my_customers = []  
-
-        for customer in all_customers: 
-            customer_suspend_start = str(customer.suspend_start)
-            customer_suspend_end = str(customer.suspend_end)
-            if  current_day < customer_suspend_start or current_day > customer_suspend_end:
-                if customer.zip_code == logged_in_employee.zip_code and (customer.weekly_pickup_day == weekday or customer.one_time_pickup == weekday) :
-                    my_customers.append(customer)
-
-        context = { 'my_customers' : my_customers,
-                    'weekday': weekday}
-        return render(request, 'employees/daily_view.html', context)
-
-
-
 
 def choose_day(request):
     user = request.user
@@ -95,6 +87,6 @@ def confirm(request, user_id):
         charge_customer.balance += 5
         charge_customer.pickup_status = True
         charge_customer.save()
-        return HttpResponseRedirect(reverse('employees:daily_view'))
+        return HttpResponseRedirect(reverse('employees:index'))
     else:
         return render(request, 'employees/confirm.html', context)

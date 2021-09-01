@@ -24,7 +24,7 @@
                       {% for customer in my_customers %}
                       {% if weekday == customer.weekly_pickup_day%}
 
-                      <form action = "{% url 'employees:daily_view' %}" name="add_charge" id="add_charge" method='POST'>
+                      <form action = "{% url 'employees:index' %}" name="add_charge" id="add_charge" method='POST'>
                         {% csrf_token %}
                         <tr>
                             <td>{{customer.name}}</td>

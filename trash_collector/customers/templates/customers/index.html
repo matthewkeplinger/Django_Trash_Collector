@@ -3,36 +3,12 @@
 
 {% block title %} Customer Home {% endblock %}
 
-{% block header %} Customer Home {% endblock %}
+{% block header %} Fictitious Trash Company, Inc.{% endblock %}
 
 {% block content %}
    {% if user.is_authenticated %}
-        <table class="table" style = "width:80%">
-            <thead>
-            <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Address</th>
-                <th scope="col">Zip Code</th>
-                <th scope="col">Weekly Pickup Day</th>
-                <th scope="col">Suspend Start</th>
-                <th scope="col">Suspend End</th>
-                <th scope="col">One Time Pickup</th>
-                <th scope="col">Account Balance</th>
-                <th scope="col"></th>
-            </tr>
-            </thead>
-            <tbody>
-                <tr><td>{{customer.name}}</td> 
-                <td>{{customer.address}}</td> 
-                <td>{{customer.zip_code}}</td>
-                <td>{{customer.weekly_pickup_day}}</td> 
-                <td>{{customer.suspend_start}}</td> 
-                <td>{{customer.suspend_end}}</td> 
-                <td>{{customer.one_time_pickup}}</td>
-                <td>{{customer.balance}}</td> </tr> <br><br>
-            </tbody>
-        </table>
-    </div>
+      <h3>This page is for messages from the trash company to end users. </h3><br>
+      <h3> Examples include holidays, bulk-item pickups, and any days where service may be interrupted.</h3>
   {% else %}
     <p>You are at the customer index, but you are not logged in.</p>
     <a href="{% url 'login' %}">Log In</a>
