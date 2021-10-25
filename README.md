@@ -1,5 +1,10 @@
 # Django_Trash_Collector
 
+Django Trash Collector is a web app made using Django MVT with a MySQL database backend.  The premise is that a small trash company is trying to somewhat modernize and wants a small, proprietary system that can manage basic customer and employee functions. 
+
+Future iterations could include HR planning functions for Employees (Day off, sick pay, etc.), Map functions, Route planning functions
+as well as the ability for customers to pay using an API. 
+
 Employee Functions: See Customers, Confirm pickup at customer location, Filter customers by requested Pickup Day
 ![Employee Dashboard](https://user-images.githubusercontent.com/24422068/138698640-b605e6e6-11ca-4d9d-8224-a0bcd3f4ae2d.PNG)
 ![Sample Confirmation Screen](https://user-images.githubusercontent.com/24422068/138698791-d1e2b873-2a06-4f7e-bfd8-d301afafd31b.PNG)
